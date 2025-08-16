@@ -21,12 +21,13 @@ public class DatabaseConfig {
         String databaseUrl = System.getenv("DATABASE_URL");
         
         if (databaseUrl != null && databaseUrl.startsWith("postgresql://")) {
+            // Simple string replacement approach
+            String jdbcUrl = databaseUrl.replace("postgresql://", "jdbc:postgresql://");
+            
             try {
                 URI dbUri = new URI(databaseUrl);
-                
                 String username = dbUri.getUserInfo().split(":")[0];
                 String password = dbUri.getUserInfo().split(":")[1];
-                String jdbcUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
                 
                 return DataSourceBuilder.create()
                         .driverClassName("org.postgresql.Driver")
@@ -35,8 +36,8 @@ public class DatabaseConfig {
                         .password(password)
                         .build();
                         
-            } catch (URISyntaxException e) {
-                throw new RuntimeException("Invalid DATABASE_URL format", e);
+            } catch (Exception e) {
+                throw new RuntimeException("Invalid DATABASE_URL format: " + databaseUrl, e);
             }
         }
         
