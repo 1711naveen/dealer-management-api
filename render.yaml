@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: dealer-management-api
+    env: java
+    plan: free
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/dealer-management-api-1.0-SNAPSHOT.jar
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dealer-db
+          property: connectionString
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: "86400000"
+    healthCheckPath: /actuator/health
+
+databases:
+  - name: dealer-db
+    databaseName: dealer_management
+    user: dealer_user
+    plan: free
