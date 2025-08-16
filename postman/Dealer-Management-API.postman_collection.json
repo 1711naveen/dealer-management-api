@@ -1,0 +1,657 @@
+{
+	"info": {
+		"name": "Dealer Management API",
+		"description": "Complete API collection for Dealer & Vehicle Management with Payment Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Generate Demo JWT Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/generate-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"generate-token"
+							]
+						},
+						"description": "Generate a demo JWT token for testing payment APIs"
+					}
+				},
+				{
+					"name": "Login with Credentials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login with demo credentials to get JWT token"
+					}
+				}
+			]
+		},
+		{
+			"name": "Dealers",
+			"item": [
+				{
+					"name": "Get All Dealers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Dealer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Dealer by Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers/email/premium@example.com",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers",
+								"email",
+								"premium@example.com"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Premium Dealers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers/subscription/PREMIUM",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers",
+								"subscription",
+								"PREMIUM"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create New Dealer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Premium Dealer\",\n  \"email\": \"newdealer@example.com\",\n  \"subscriptionType\": \"PREMIUM\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Dealer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Dealer Name\",\n  \"email\": \"updated@example.com\",\n  \"subscriptionType\": \"PREMIUM\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Dealer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dealers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dealers",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Vehicles",
+			"item": [
+				{
+					"name": "Get All Vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Vehicle by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Vehicles by Dealer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/dealer/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"dealer",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Available Vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/status/AVAILABLE",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"status",
+								"AVAILABLE"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Vehicles from Premium Dealers (Special API)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/premium-dealers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"premium-dealers"
+							]
+						},
+						"description": "Special API that fetches all vehicles belonging to PREMIUM dealers only"
+					}
+				},
+				{
+					"name": "Search Vehicles by Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/search?model=BMW",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"search"
+							],
+							"query": [
+								{
+									"key": "model",
+									"value": "BMW"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create New Vehicle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dealerId\": 1,\n  \"model\": \"Tesla Model 3\",\n  \"price\": 45000.00,\n  \"status\": \"AVAILABLE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Vehicle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dealerId\": 1,\n  \"model\": \"Tesla Model S\",\n  \"price\": 75000.00,\n  \"status\": \"AVAILABLE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Vehicle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Payments (JWT Required)",
+			"item": [
+				{
+					"name": "Initiate Payment - UPI",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dealerId\": 1,\n  \"amount\": 999.99,\n  \"method\": \"UPI\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/initiate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"initiate"
+							]
+						},
+						"description": "Initiate payment that will auto-update to SUCCESS after 5 seconds"
+					}
+				},
+				{
+					"name": "Initiate Payment - Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dealerId\": 1,\n  \"amount\": 1500.00,\n  \"method\": \"CARD\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/initiate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"initiate"
+							]
+						}
+					}
+				},
+				{
+					"name": "Initiate Payment - NetBanking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dealerId\": 2,\n  \"amount\": 2500.00,\n  \"method\": \"NETBANKING\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/initiate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"initiate"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Payments by Dealer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/dealer/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"dealer",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Pending Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/status/PENDING",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"status",
+								"PENDING"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Successful Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/status/SUCCESS",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"status",
+								"SUCCESS"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Payment by Transaction ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/payment/transaction/TXN1692181234567890",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"transaction",
+								"TXN1692181234567890"
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "jwtToken",
+			"value": "your-jwt-token-here"
+		}
+	]
+}
