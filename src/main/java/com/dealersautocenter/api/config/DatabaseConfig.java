@@ -23,12 +23,15 @@ public class DatabaseConfig {
         if (databaseUrl != null && databaseUrl.startsWith("postgresql://")) {
             // Simple string replacement approach
             String jdbcUrl = databaseUrl.replace("postgresql://", "jdbc:postgresql://");
-            
             try {
                 URI dbUri = new URI(databaseUrl);
                 String username = dbUri.getUserInfo().split(":")[0];
                 String password = dbUri.getUserInfo().split(":")[1];
                 
+                System.out.println("Using DATABASE_URL: " + jdbcUrl);
+                System.out.println("Database Username: " + username);
+                System.out.println("Database Password: " + password);
+
                 return DataSourceBuilder.create()
                         .driverClassName("org.postgresql.Driver")
                         .url(jdbcUrl)
